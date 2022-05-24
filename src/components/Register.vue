@@ -29,6 +29,34 @@
 </template>
 
 <script>
+import AuthenticationService from '@/services/AuthenticationService'
+export default {
+  data () {
+    return {
+      email: '',
+      password: '',
+      error: null
+    }
+  },
+  methods: {
+    async register () {
+      try {
+        console.log('register button', this.email, this.password)
+        console.log('registration successful', this.email, this.password)
+        const response = await AuthenticationService.register({
+          email: this.email,
+          password: this.password
+        })
+        this.email=''
+        this.password=''
+        this.error=response.data.error
+        console.log(response)
+      } catch (error) {
+        this.error = error.response.data.error
+      }
+    }
+  }
+}
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
