@@ -1,6 +1,8 @@
 <template>
 <div>
-   <br>
+
+<br>
+
 <div class="w3-card-4">
   <div  class="w3-container w3-orange">
 
@@ -10,16 +12,20 @@
        <h4><div class="error w3-text-red" v-html="error"></div></h4>
        <br>
        <h4>Please Provide your Email</h4>
+       <form name="album-register-user"
+       autocomplete="off">
        <input type="text"  name="email" class="w3-input w3-border w3-sand"  placeholder="Enter email"
     v-model="email"
    />
    <br>
-   <h4>Please Provide your Email</h4>
-   <input type="password" class="w3-input w3-border w3-sand"
+   <h4>Please Provide your Password</h4>
+   <input type="text" class="w3-input w3-border w3-sand"
           name="password"
           placeholder="Enter password"
-          v-model="password"
-   /><br>
+          v-model="password" autocomplete="new-password"
+   />
+   </form>
+   <br>
    <br>
 
     <button @click="register" class="w3-btn w3-blue">Register</button>
@@ -42,14 +48,14 @@ export default {
     async register () {
       try {
         console.log('register button', this.email, this.password)
-        console.log('registration successful', this.email, this.password)
         const response = await AuthenticationService.register({
           email: this.email,
           password: this.password
         })
-        this.email=''
-        this.password=''
-        this.error=response.data.error
+        console.log(response.data.token)
+        this.error = 'Registration sucessfull'
+        this.email = ' '
+        this.password = ' '
         console.log(response)
       } catch (error) {
         this.error = error.response.data.error
