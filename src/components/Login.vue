@@ -52,9 +52,7 @@ export default {
           password: this.password
         })
         console.log(response.data.token)
-        this.error = 'Login sucessfull'
-      //   this.email = ' '
-      //   this.password = ' '
+        this.error = 'Login sucessful'
         console.log(response)
       } catch (error) {
         this.error = error.response.data.error
