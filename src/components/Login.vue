@@ -51,9 +51,15 @@ export default {
           email: this.email,
           password: this.password
         })
+        this.$router.push('/add')
         console.log(response.data.token)
-        this.error = 'Login sucessful'
+        this.error = 'Login sucessfull'
+        this.email = ' '
+        this.password = ' '
+        this.$routestore.dispatch('setToken', response.data.token)
+        this.$routestore.dispatch('setUser', response.data.user)
         console.log(response)
+        return
       } catch (error) {
         this.error = error.response.data.error
       }
