@@ -10,7 +10,10 @@
         </button></router-link><br>
     </div>
     <div class="w3-half">
-        <button @click="se" class="w3-container w3-blue">Search</button><br>
+       <router-link to="/albums">
+        <button @click="gotTo({to:'albums'})" class="w3-container w3-blue">
+        View Albums
+        </button></router-link>
     </div>
 </div>
 <div class="w3-half">
